@@ -132,7 +132,7 @@ class PhpParameter extends AbstractBuilder
     /**
      * @param string $type
      */
-    public function setType($type, $allowsNull = false)
+    public function setType($type)
     {
         $this->type = $type;
         $this->typeBuiltin = BuiltinType::isBuiltIn($type);
