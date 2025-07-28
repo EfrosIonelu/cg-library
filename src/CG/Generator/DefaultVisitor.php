@@ -50,7 +50,7 @@ class DefaultVisitor implements DefaultVisitorInterface
                     $this->writer->writeln('require_once __DIR__ . '.var_export('/'.$file->getRelativePath(), true).';');
                     continue;
                 }
-                
+
                 $this->writer->writeln('require_once '.var_export($file, true).';');
             }
 
@@ -193,10 +193,15 @@ class DefaultVisitor implements DefaultVisitorInterface
             if ($method->isReturnNullable()) {
                 $this->writer->write('?');
             }
-            
+
             if (!$method->hasBuiltInReturnType() && '\\' !== $type[0]) {
                 $this->writer->write('\\');
             }
+
+            if($type[0] === '?'){
+                $type = substr($type, 1);
+            }
+
             $this->writer->write($type);
         }
 
@@ -246,13 +251,17 @@ class DefaultVisitor implements DefaultVisitorInterface
         if ($function->hasReturnType()) {
             $type = $function->getReturnType();
             $this->writer->write(': ');
-            
+
             if ($function->isReturnNullable()) {
                 $this->writer->write('?');
             }
-            
+
             if (!$function->hasBuiltinReturnType() && '\\' !== $type[0]) {
                 $this->writer->write('\\');
+            }
+
+            if($type[0] === '?'){
+                $type = substr($type, 1);
             }
 
             $this->writer->write($type);
@@ -292,7 +301,7 @@ class DefaultVisitor implements DefaultVisitorInterface
                     $this->writer->write('\\');
                 }
 
-                if($type[0]=== '?'){
+                if($type[0] === '?'){
                     $type = substr($type, 1);
                 }
 

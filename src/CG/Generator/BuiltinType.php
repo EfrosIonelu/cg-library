@@ -4,8 +4,10 @@ namespace CG\Generator;
 
 class BuiltinType
 {
-    private static $builtinTypes = array('self', 'array', 'callable', 'bool', 'float', 'int', 'string', 'void', 'iterable', 'object');
-
+    private static $builtinTypes = array(
+        'self', 'array', 'callable', 'bool', 'float', 'int', 'string', 'void', 'iterable', 'object',
+        '?array', '?callable', '?bool', '?float', '?int', '?string', 'void', '?iterable', '?object',
+    );
     private function __construct(){
         // Static class
     }
