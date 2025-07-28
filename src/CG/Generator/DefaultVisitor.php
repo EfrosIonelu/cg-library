@@ -291,6 +291,11 @@ class DefaultVisitor implements DefaultVisitorInterface
                 if (!$parameter->hasBuiltinType() && '\\' !== $type[0]) {
                     $this->writer->write('\\');
                 }
+
+                if($type[0]=== '?'){
+                    $type = substr($type, 1);
+                }
+
                 $this->writer->write($type . ' ');
             }
 
